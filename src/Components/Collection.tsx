@@ -35,10 +35,11 @@ const Collection:React.FC<Props> = (props) => {
         (
           <div className=""></div>
         )}
-        {Pokemons.map((o) => {
+        {Pokemons.map((o, index) => {
           return (
             <div onClick={() => selectPokemon(o.id)}>
               <List
+                index={index}
                 viewDetail={view_detail}
                 setDetail={set_detail}
                 key={o.id}

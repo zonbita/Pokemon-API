@@ -14,31 +14,32 @@ const App: React.FC = () => {
     isOpened: false,
   })
 
-  const getPokemons = async () => {
-    const res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=20", { timeout: 10000 })
-    
-    res.data.results.forEach(async (pokemon:Pokemons) => {
-      const poke = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-      setPokemons((p) => [...p, poke.data])
-      setLoading(false);   
-    });
-  }
+
   
   useEffect(() => {
+    const getPokemons = async () => {
+      const res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=20")
+      setNextUrl(res.data.next)
+      res.data.results.forEach(async (pokemon:Pokemons) => {
+        const poke = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+        setPokemons((p) => [...p, poke.data])
+        setLoading(false)   
+      });
+    }
     getPokemons();
   })
 
   const nextPage = async () => {
     setLoading(true);
-    let res = await axios.get(nextUrl);
-    setNextUrl(res.data.next);
+    let res = await axios.get(nextUrl)
+    setNextUrl(res.data.next)
     res.data.results.forEach(async (pokemon: Pokemons) => {
       const poke = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-      );
+      )
       setPokemons((p) => [...p, poke.data]);
-      setLoading(false);
-    });
+      setLoading(false)
+    })
   };
 
   return (

@@ -2,21 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Detail } from '../Interface';
 import './list.css'
 interface Props {
-    viewDetail: Detail;
-    setDetail: React.Dispatch<React.SetStateAction<Detail>>;
+    viewDetail: Detail
+    setDetail: React.Dispatch<React.SetStateAction<Detail>>
     abilities:
       | {
-          name: string;
-          ability: string;
+          name: string
+          ability: string
         }[]
-      | undefined;
-    name: string;
-    id: number;
-    image: string;
+      | undefined
+    name: string
+    id: number
+    image: string
+    index: number
   }
 
 const List: React.FC<Props> = (props) => {
-    const { name, id, image, abilities, viewDetail, setDetail } = props;
+    const { index, name, id, image, abilities, viewDetail, setDetail } = props;
     const [isSelected, setSelected] = useState(false);
     useEffect(() => {
       setSelected(id === viewDetail?.id);
@@ -42,14 +43,15 @@ const List: React.FC<Props> = (props) => {
               </div>
               <div className="detail-skill">
                 <p className="detail-ability"> Ablities: </p>
-                {abilities?.map((ab: any) => {
-                  return <div className=""> {ab.ability.name}</div>;
+                {abilities?.map((o: any) => {
+                  return <div className=""> {o.ability.name}</div>;
                 })}
               </div>
             </div>
           </section>
         ) : (
           <section className="pokemon-list-container">
+            <p>{index}</p>
             <p className="pokemon-name"> {name} </p>
             <img src={image} alt="pokemon" />
           </section>

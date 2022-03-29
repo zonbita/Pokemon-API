@@ -19,8 +19,8 @@
     flex-wrap: wrap;
 }
 .overlay{
-    width:100vw;
-    height: 100vh;
+    width:200vw;
+    height: 200vh;
 }
 .detail-container {
     display:flex;
@@ -69,7 +69,7 @@
     background-color: #f4f1de;
     margin:1rem;
     padding: 0 1rem;
-    border-radius: 12px;
+    border-radius: 5px;
     justify-content: center;
     align-items: center;
 }
@@ -78,7 +78,7 @@
     background-color: #f4f1de;
     position: absolute;
     text-align:center;
-    width: 270px;
+    width: 500px;
     height: 300px;
     top:30%;
     left:41%;
